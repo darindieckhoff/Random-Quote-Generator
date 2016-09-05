@@ -91,9 +91,11 @@ function quoteMessage (prop) { //function to construct a string using different 
 function printQuote () { //printQuote displays the final HTML string to the page.
   var randomQuoteObject = getRandomQuote(randomObject); //calls getRandomQuote function ot get random array object
   for (var prop in randomQuoteObject) { //for in loop to cycle through properties of random array object
-    value = randomQuoteObject[prop]; //random quotes array object property value stored in variable
-    quoteMessage (prop); //calls randomQuoteObject function to construct string
-  }
+    if (randomQuoteObject.hasOwnProperty(prop)) {
+      value = randomQuoteObject[prop]; //random quotes array object property value stored in variable
+      quoteMessage (prop); //calls randomQuoteObject function to construct string
+    }
+  }  
   message += '</p>'; //adding ending paragraph tag
   print(message); //calls print function to display final HTML string to page
   message = ''; //clears message from screen for next quote
